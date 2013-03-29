@@ -1,0 +1,79 @@
+The files in this directory implement the routines related to the paper
+
+E. Bini, G. M. Buttazzo, Optimal Sampling Patterns for Linear Control
+Systems, submitted to IEEE Transactions on Automatic Control.
+
+In the explanation of these routines, we assume familiarity with the
+paper.
+
+All routines have been implemented as scripts and not as functions.
+Hence, each script requires some "INPUTS" and produce some "OUTPUTS".
+Inputs and outputs of the scripts are specified in the head of the
+file. The code does not pretend to be particularly efficient. The goal
+is only on showing the results, which are explained in the above
+mentioned paper.
+
+Below we list the files:
+
+init1D.m
+	Initializes a first-order system
+
+init2D.m
+	Initializes a special second-order system
+
+tKfromTauK.m
+	It simply computes the sampling instants from the sampling
+	intervals
+
+computeDiscDyn.m
+	Computes the matrices describing the discrete-time dynamics,
+	for a given sampling pattern.
+
+computeDiscWeights.m
+	Compute the discrete-time weighting matrices for a given
+	sampling pattern
+
+computeDiscRiccati.m
+	Computes the Riccati matrices for a given sampling pattern
+
+computeDiscRiccatiDiff.m
+	Computes the derivative of the Riccati matrices w.r.t. to the
+	sampling intervals
+
+computeOptUk.m
+
+	Compute the optimal control input and the corresponding state
+	evolution.
+
+optPeriodic.m
+	Compute the cost for the periodic sampling.
+
+optDensM.m
+	Computes the sampling pattern according to a given power
+	(provided as input) of the derivative of the optimal control
+	input
+
+optQuanta.m
+	Compute the sampling sequence that minimizes the quantization
+	error w.r.t. the optimal continuous-time input. This method is
+	called "qua" in the paper. The method iterates the necessary
+	condition for optimality.
+
+computeAvgs.m
+	Used by optQuanta to compute the average of the optimal
+	control input over the sampling intervals
+
+optNumeric.m
+	Compute numerically the sampling sequence that minimizes the
+	LQR control cost.  This method is called "num" in the paper
+	and it is based on a simple gradient descent algorithm
+
+plotCalpha.m
+	Used to plot the asymptotic normalized cost for the methods
+	that sample according to powers of the derivative of the
+	optimal continuous-time input
+
+plotCmWithN.m
+	Used to plot the asymptotic normalized costs for several
+	methods, as the number of sampling instants N varies
+
