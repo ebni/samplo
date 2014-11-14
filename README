@@ -1,4 +1,7 @@
-The files in this directory implement the routines related to the self-triggered and optimal sampling. The user of this code may find more details of the theory behind these methods in the following papers
+The files in this directory implement the routines related to the
+self-triggered and optimal sampling. The user of this code may find
+more details of the theory behind these methods in the following
+papers
 
 E. Bini, G. M. Buttazzo, Optimal Sampling Patterns for Linear Control
 Systems, submitted to IEEE Transactions on Automatic Control.
