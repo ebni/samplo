@@ -1,10 +1,10 @@
-The files in this directory implement the routines related to the paper
+The files in this directory implement the routines related to the self-triggered and optimal sampling. The user of this code may find more details of the theory behind these methods in the following papers
 
 E. Bini, G. M. Buttazzo, Optimal Sampling Patterns for Linear Control
 Systems, submitted to IEEE Transactions on Automatic Control.
 
-In the explanation of these routines, we assume familiarity with the
-paper.
+In the explanation of these routines, we assume familiarity with these
+papers.
 
 All routines have been implemented as scripts and not as functions.
 Hence, each script requires some "INPUTS" and produce some "OUTPUTS".
@@ -41,7 +41,6 @@ computeDiscRiccatiDiff.m
 	sampling intervals
 
 computeOptUk.m
-
 	Compute the optimal control input and the corresponding state
 	evolution.
 
@@ -76,4 +75,3 @@ plotCalpha.m
 plotCmWithN.m
 	Used to plot the asymptotic normalized costs for several
 	methods, as the number of sampling instants N varies
-
