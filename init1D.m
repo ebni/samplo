@@ -33,7 +33,7 @@ if (A==0)
 else
   Phi = inline("exp(A*x)","x");
   Gamma = inline("(exp(A*x)-1)*B/A","x");
-end
+endif
 
 % boundary conditions
 x_0 = 1;
