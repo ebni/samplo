@@ -33,7 +33,7 @@ Gamma = @(x) 1/w*[sin(w*x); (1-cos(w*x))];
 
 % boundary conditions
 x_0 = [1; 0];    % WARNING: if changed then uOpt must be changed
-t_f =1;
+t_f =10;
 
 % init weight matrices
 Q = q*eye(2);

@@ -7,17 +7,17 @@
 % OUTPUTS
 %   Uvec: Uvec(:,k) is the average of uOpt over [tK(k), tK(k+1)]
 
-Uvec = zeros(1,N);
+Uvec = zeros(size(uOpt(0),1),N);
 for k=1:N
-  if (tauK(k) > 0)
-    Uvec(k) = quad(uOpt, tK(k), tK(k+1))/tauK(k);
-  endif
-  if (tauK(k) == 0)
-    Uvec(k) = uOpt(tK(k));
-  endif
-  if (tauK(k) < 0)
-    disp("computeAvgs: WARNING: integrating on a negative interval")
-    Uvec(k) = uOpt(tK(k));
-  endif
+	if (tauK(k) > 0)
+		Uvec(:,k) = integral(uOpt, tK(k), tK(k+1),"ArrayValued",true)/tauK(k);
+	end
+	if (tauK(k) == 0)
+		Uvec(k) = uOpt(tK(k));
+	end
+	if (tauK(k) < 0)
+		disp("computeAvgs: WARNING: integrating on a negative interval")
+		Uvec(k) = uOpt(tK(k));
+	end
 end
 clear k

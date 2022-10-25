@@ -18,56 +18,56 @@
 
 
 % the optimal input WARNING: this is true only when S=Kinf
-for i=1:numSteps+1,
-  allF(i) = uOpt(allT(i));
-endfor
+for i=1:numSteps+1
+	allF(:,i) = uOpt(allT(i));
+end
 
 tKfromTauK;
 
 iter=0;
 while (iter<=10)     % STOP CONDITION (1): too many iterations
 
-  %disp("------------------------------------------------------");
-  %disp(iter);
-  tauK = diff(tK);
+	%disp("------------------------------------------------------");
+	%disp(iter);
+	tauK = diff(tK);
 
-  % computing Uvec as the average of the opt continuous time
-  computeAvgs;
-  for k=1:N-1,
-    % index in allT such that allT(curK)=tK(k+1)
-    curK = floor(tK(k+1)/t_f*numSteps+1);
-    if norm(Uvec(k)-allF(curK)) < norm(Uvec(k+1)-allF(curK))
-      % should increase curK
-      while norm(Uvec(k)-allF(curK)) < norm(Uvec(k+1)-allF(curK))
-	curK = curK+1;
-	if curK>numSteps+1
-	  disp("there are problems with the algorithm");
-	endif
-      endwhile
-    else
-      % should decrease curK
-      while norm(Uvec(k)-allF(curK)) >= norm(Uvec(k+1)-allF(curK))
-	curK = curK-1;
-	if curK <= 0
-	  disp("there are problems with the algorithm");
-	endif
-      endwhile
-      curK = curK+1;
-    endif
-    % computing the intercept between the curve of the optimal u and 
-    % plane of equidistance between Uvec(k) and Uvec(k+1)
+	% computing Uvec as the average of the opt continuous time
+	computeAvgs;
+	for k=1:N-1,
+		% index in allT such that allT(curK)=tK(k+1)
+		curK = floor(tK(k+1)/t_f*numSteps+1);
+		if norm(Uvec(k)-allF(curK)) < norm(Uvec(k+1)-allF(curK))
+			% should increase curK
+			while norm(Uvec(k)-allF(curK)) < norm(Uvec(k+1)-allF(curK))
+				curK = curK+1;
+				if curK>numSteps+1
+					disp("there are problems with the algorithm");
+				end
+			end
+		else
+			% should decrease curK
+			while norm(Uvec(k)-allF(curK)) >= norm(Uvec(k+1)-allF(curK))
+				curK = curK-1;
+				if curK <= 0
+					disp("there are problems with the algorithm");
+				end
+			end
+			curK = curK+1;
+		end
+		% computing the intercept between the curve of the optimal u and
+		% plane of equidistance between Uvec(k) and Uvec(k+1)
 
-    %scalarMid = .5*(dot(Uvec(k),Uvec(k))+dot(Uvec(k+1),Uvec(k+1)));
-    %scalar0 = dot(Uvec(k+1)-Uvec(k),allF(curK-1));
-    %scalar1 = dot(Uvec(k+1)-Uvec(k),allF(curK));
-    %lambda = (scalarMid-scalar0)/(scalar1-scalar0);
-    %nextTk = allT(curK-1)+lambda*(allT(curK)-allT(curK-1));
-    %tK(k+1) = nextTk;
+		%scalarMid = .5*(dot(Uvec(k),Uvec(k))+dot(Uvec(k+1),Uvec(k+1)));
+		%scalar0 = dot(Uvec(k+1)-Uvec(k),allF(curK-1));
+		%scalar1 = dot(Uvec(k+1)-Uvec(k),allF(curK));
+		%lambda = (scalarMid-scalar0)/(scalar1-scalar0);
+		%nextTk = allT(curK-1)+lambda*(allT(curK)-allT(curK-1));
+		%tK(k+1) = nextTk;
 
-    tK(k+1) = allT(curK);
-  endfor
-  iter = iter+1;
-endwhile
+		tK(k+1) = allT(curK);
+	end
+	iter = iter+1;
+end
 
 % the quantized input
 %[Uvec] = computeAvgs(A,B,L,x_0,tauK);
